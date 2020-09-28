@@ -38,6 +38,6 @@ export const handleRegister = (req, res, db, bcrypt) => {
       });
   
     } catch (err) {
-      return res.status(404).json({ fail: "Incorrect user submition" });
+      return res.status(404).json("Incorrect user submition" );
     }
   }
