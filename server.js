@@ -27,6 +27,8 @@ app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
+app.get('/', (req, res) => {res.send("It's on!!!")})
+
 
 // dependency injection, inicia as variaveis aqui e passa
 app.post('/signin', (req, res) => {handleSignIn(req, res, db, bcrypt)});
