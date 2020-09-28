@@ -9,7 +9,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
         console.log('errro')
         throw new Error('error');
       }
-      console.log("Passou validação");
+      try{
       db.transaction(trx => {
         console.log("Pos1")
         trx.insert({
@@ -39,10 +39,13 @@ export const handleRegister = (req, res, db, bcrypt) => {
               })
           })
           .catch(err => {
-            console.log("Um erro aconteceu aqui");
             return res.status(400).json('unable to register');
           });
       });
+    }catch(err){
+      console.log('eeeeeeerou');
+      return res.status(404).json('unable');
+    }
   
     } catch (err) {
       console.log("O erro foi aqui");
