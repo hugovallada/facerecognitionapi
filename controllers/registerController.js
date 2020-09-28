@@ -7,7 +7,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
     }
     const passwordHash = bcrypt.hashSync(password, 10);
 
-
+    
 
     db.transaction(trx => {
       trx.insert({
@@ -25,7 +25,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
               joined: new Date(),
             })
             .then(user => {
-              return res.json(user[0]);
+              res.json(user[0]);
             })
         })
         .then(trx.commit)
@@ -34,13 +34,13 @@ export const handleRegister = (req, res, db, bcrypt) => {
     })
       .catch(err => {
         console.log(err);
-        return res.status(400).json('unable to register');
+        res.status(400).json('unable to register');
       });
 
 
 
   } catch (err) {
     console.log("O erro foi aqui");
-    return res.status(404).json("Incorrect user submition");
+    res.status(404).json("Incorrect user submition");
   }
 }
