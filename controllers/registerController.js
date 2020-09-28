@@ -33,6 +33,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
 
     })
       .catch(err => {
+        console.log(err);
         return res.status(400).json('unable to register');
       });
 
