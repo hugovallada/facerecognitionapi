@@ -20,10 +20,10 @@ const db = knex({
   }
 });
 
-console.log(process.env.DATABASE_URL);
+
 
 const app = express();
-app.use(db)
+
 app.use(cors());
 
 app.use(express.urlencoded());

@@ -1,13 +1,14 @@
 export const handleRegister = (req, res, db, bcrypt) => {
   const { name, email, password } = req.body;
 
-  const passwordHash = bcrypt.hashSync(password, 10);
-
   try {
-
     if ((!name || !email || !password)) {
       throw new Error('error');
     }
+    const passwordHash = bcrypt.hashSync(password, 10);
+
+
+
     db.transaction(trx => {
       trx.insert({
         hash: passwordHash,
