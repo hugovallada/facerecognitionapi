@@ -1,5 +1,4 @@
 import Clarifai from 'clarifai'
-import { response } from 'express';
 
 const app = new Clarifai.App({
   //TODO: Colcoar a api key
