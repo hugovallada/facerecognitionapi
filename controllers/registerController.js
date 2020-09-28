@@ -32,11 +32,13 @@ export const handleRegister = (req, res, db, bcrypt) => {
               .catch(trx.rollback)
           })
           .catch(err => {
+            console.log("Um erro aconteceu aqui");
             return res.status(400).json('unable to register');
           });
       });
   
     } catch (err) {
+      console.log("O erro foi aqui");
       return res.status(404).json("Incorrect user submition" );
     }
   }
