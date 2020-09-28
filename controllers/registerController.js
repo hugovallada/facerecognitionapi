@@ -11,6 +11,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
       }
       console.log("Passou validação");
       db.transaction(trx => {
+        console.log("Pos1")
         trx.insert({
           hash: passwordHash,
           email: email
@@ -18,6 +19,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
           .into('login')
           .returning('email')
           .then(loginEmail => {
+            console.log("Errrrrr");
             trx('users')
               .returning('*')
               .insert({
@@ -26,12 +28,13 @@ export const handleRegister = (req, res, db, bcrypt) => {
                 joined: new Date(),
               })
               .then(user => {
+                console.log('pos2')
                 return res.json(user[0]);
               })
               .then(trx.commit)
-              .catch(err => {
-                trx.rollback;
+              .catch((err) => {
                 console.log('ROllback');
+                trx.rollback;
                 return res.status(400).json("Unable to register");
               })
           })
