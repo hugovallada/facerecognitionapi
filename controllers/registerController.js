@@ -9,7 +9,7 @@ export const handleRegister = (req, res, db, bcrypt) => {
         console.log('errro')
         throw new Error('error');
       }
-  
+      console.log("Passou validação");
       db.transaction(trx => {
         trx.insert({
           hash: passwordHash,
@@ -29,7 +29,11 @@ export const handleRegister = (req, res, db, bcrypt) => {
                 return res.json(user[0]);
               })
               .then(trx.commit)
-              .catch(trx.rollback)
+              .catch(err => {
+                trx.rollback;
+                console.log('ROllback');
+                return res.status(400).json("Unable to register");
+              })
           })
           .catch(err => {
             console.log("Um erro aconteceu aqui");
