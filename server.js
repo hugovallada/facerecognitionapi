@@ -13,7 +13,7 @@ import {handleImage, handleApiCall} from './controllers/imageController.js';
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
+    host: 'postgresql-corrugated-44204',
     user: 'postgres',
     password: 'postgres',
     database: 'smart-brain'
