@@ -6,12 +6,10 @@ export const handleRegister = (req, res, db, bcrypt) => {
     try {
 
       if((!name || !email || !password)){
-        console.log('errro')
         throw new Error('error');
       }
       try{
       db.transaction(trx => {
-        console.log("Pos1")
         trx.insert({
           hash: passwordHash,
           email: email
@@ -19,7 +17,6 @@ export const handleRegister = (req, res, db, bcrypt) => {
           .into('login')
           .returning('email')
           .then(loginEmail => {
-            console.log("Errrrrr");
             trx('users')
               .returning('*')
               .insert({
@@ -28,12 +25,10 @@ export const handleRegister = (req, res, db, bcrypt) => {
                 joined: new Date(),
               })
               .then(user => {
-                console.log('pos2')
                 return res.json(user[0]);
               })
               .then(trx.commit)
               .catch((err) => {
-                console.log('ROllback');
                 trx.rollback;
                 return res.status(400).json("Unable to register");
               })
@@ -43,7 +38,6 @@ export const handleRegister = (req, res, db, bcrypt) => {
           });
       });
     }catch(err){
-      console.log('eeeeeeerou');
       return res.status(404).json('unable');
     }
   
