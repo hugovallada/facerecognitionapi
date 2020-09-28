@@ -32,7 +32,6 @@ export const handleRegister = (req, res, db, bcrypt) => {
               .catch(trx.rollback)
           })
           .catch(err => {
-            console.log(err)
             return res.status(400).json('unable to register');
           });
       });
