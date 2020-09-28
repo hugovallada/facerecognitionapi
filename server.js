@@ -4,6 +4,7 @@ import cors from 'cors';
 import knex from 'knex';
 
 
+
 import { handleRegister } from './controllers/registerController.js';
 import { handleSignIn } from './controllers/signInController.js';
 import { handleProfile } from './controllers/profileController.js'
@@ -40,8 +41,10 @@ app.put('/image', (req, res) => {handleImage(req, res, db)});
 
 app.post('/imageurl', (req, res) => {handleApiCall(req, res)});
 
-app.listen(3001, () => {
-  console.log("Server iniciado em localhost:3001/");
+
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log(`Server iniciado em localhost:${PORT}`);
 });
 
 
