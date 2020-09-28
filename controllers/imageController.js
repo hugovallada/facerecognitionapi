@@ -1,4 +1,5 @@
 import Clarifai from 'clarifai'
+import { response } from 'express';
 
 const app = new Clarifai.App({
   //TODO: Colcoar a api key
@@ -21,6 +22,8 @@ export const handleApiCall = async (req, res) => {
   const data = await response.json();
   res.json(data);
   }catch(err) {
+    console.log("RESPONSE: ", response);
+    console.log(err);
     res.status(400).json("Unable to work with the API")
   }
 
